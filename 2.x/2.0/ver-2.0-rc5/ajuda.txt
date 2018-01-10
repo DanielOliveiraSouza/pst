@@ -1,0 +1,64 @@
+---------------------------------------------------------------------------
+	PostInstall 2.0-rc5-stable
+---------------------------------------------------------------------------	
+	pst é um script que configura temporariamente, que permite a reparação, a atualização e a instalação de um ou mais componentes.
+	Ideal para quem possui internet em sua casa e não quer que o proxy seja habilitado fixamente. Ou habilitar o proxy em uma máquina sem ter que 
+	configura-lo manualmente. O primeiro argumento é a função que deseja chamar. Apenas a funçãPPAo instalacao_dinamica aceita mais de um argumento.
+	
+	 Digite: pst [arg].
+	 --aj
+	Exibe ajuda.
+	
+
+	 --at
+	Para atualizar o sistema
+	
+	 --at_dados 
+	Atualiza os dados.
+
+	 --cr_apt
+	Cria o arquivo /etc/apt/apt.conf.
+
+	 --i-d
+	Recebe no máximo cinco argumentos. Digite o nome de até cinco programas que deseja instalar.
+
+	 --i-e
+	Para instalar itens importantes sem procurar por atualizaçoes
+	
+	 --ls_dados
+	Exibe as variaveis de ambiente.
+
+	 --reconf-sudoers
+	Restaura o arquivo /etc/sudoers ao estado anterior ao comando --conf-sudoers
+	
+	 --rm_apt	
+	Remove o arquivo /etc/apt/apt.conf ou /etc/apt/apt.conf.d/01proxy
+	
+	 --t	
+	Para atualizar e instalar itens importantes (estatico)
+	
+	 --v
+	Imprime a versão do arquivo.
+	 Exemplo de uso: 
+	pst.sh --i-d openjdk-7-jdk
+	
+	 ----------------------------------------------------------------------------------
+	Novos comandos:.
+	 --exe_sub
+	Sintaxe: --exe_sub [arg] ou --exe_sub [arg1] [arg2]
+	Executa um script externo dentro mesmo shell. 
+	Existem duas maneiras de executar este comando:
+	A primeira forma é indica se o script está no mesmo diretório
+	--exe_sub nome_script
+	A segunda forma:
+	--exe_sub --dir local_do_script
+	Exemplo: --exe_sub --dir /home/guest/linux.sh.
+
+	 --add_ppa
+	Adiciona um PPA
+	Sintaxe: --add_ppa [arg]
+	Exemplo --add_ppa ppa:webupd8team/java.
+
+	 --at_hostname [arg]
+	Sintaxe: --at_hostname novo_nome_hostname
+	Atualiza o hostname  para um nome passado como parâmetro. (precisa ser root).

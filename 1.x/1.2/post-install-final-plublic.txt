@@ -1,0 +1,121 @@
+#!/bin/bash
+# UNIVERSIDADE FEDERAL DE MATO GROSSO
+# Autor: Daniel Oliveira Souza
+# Versão: 1.2
+# Descrição: Script de configuração geral do sistema apt com proxy de linux baseado em debian
+#
+Ajuda(){
+	echo "Digite:";
+		echo "--ajuda.
+		Exibe ajuda.
+		";
+		
+		echo "--atualize
+		Para atualizar o sistema
+		";
+		
+		echo "--configure_etc_sudores
+		Faz o backup do arquivo /etc/sudoers e
+		Adiciona instrução para o update-notifier usar o proxy. 
+		Esta instrução deve ser executada uma única vez.
+		Caso queira desconfigurar o /etc/sudoers. Use o comando --restaure_etc_sudoers;
+		Note: Isto é válido  apenas para ubuntu
+		";
+		
+		echo "--instalacao_dinamica nome_do programa.
+		Recebe no máximo cinco argumentos. Digite o nome de até cinco programas que deseja instalar.
+		";
+		
+		echo "--instalacao_estatica 
+		Para instalar itens importantes sem procurar por atualizaçoes
+		";
+		echo "--restaure_etc_sudoers
+		Restaura o arquivo /etc/sudoers ao estado anterior ao comando --configure-update-notifier
+		";
+		echo "--tudo 		
+		Para atualizar e instalar itens importantes (estatico)
+		";
+		echo "--version
+		Imprime a versão do arquivo";
+		echo "Observação: Antes de executar um dos comandos passados por parametro pelo usuário. O script procura por problemas no APT os corrige";
+}
+Habilita_update_notifier(){
+		if [ -e /etc/sudoers ]
+		then
+		cp /etc/sudoers /etc/sudoers.backup
+		echo "#Instrução oficial para habilitar proxy no update-notifier" |tee -a /etc/sudoers
+		echo "#Referencia: http://askubuntu.com/questions/140558/12-04-lts-flashplugin-installer-problem" |tee -a /etc/sudoers
+		echo "Defaults env_keep="http_proxy" "| tee -a /etc/sudoers
+		fi
+}
+Repara_sistema_apt(){
+	  dpkg --configure -a
+	  if [ -e /var/lib/apt/lists/lock ]
+	  then
+	  echo "APT bloqueado ação->>desbloquear"
+	  rm /var/lib/apt/lists/lock
+	  echo "Desbloqueado"
+	  fi
+	  
+	  if [ -e  /var/lib/dpkg/lock ]
+	  then 
+	  echo "DPKG bloqueado ação>> desbloquear"
+	  rm /var/lib/dpkg/lock;
+	  echo "Desbloqueado"
+	  fi
+	
+}
+#Função chave do programa post-
+Habilita_proxy(){
+	  export http_proxy="http://201311722045:42959908848@10.0.16.1:3128"
+	  export socks_proxy="socks://201311722045:42959908848@10.0.16.1:3128"
+	  export https_proxy=$http_proxy
+	  export ftp_proxy=$http_proxy
+}
+Atualiza_sistema(){
+	  apt-get  update -o Acquire::http::Proxy=$http_proxy 
+	  apt-get dist-upgrade -o  Acquire::http::Proxy=$http_proxy
+	 }
+Instala_componente(){
+	    apt-get install  kate konsole openjdk-7-jdk gcc g++ build-essential checkinstall cdbs devscripts dh-make fakeroot libxml-parser-perl check avahi-daemon -y -o  Acquire::http::Proxy= $http_proxy
+	    apt-get install nasm rar unrar netbeans codeblocks eclipse -o Acquire::http::Proxy=$http_proxy
+	    apt-get clean
+}
+
+#Chama a função de acordo com o parametro passado pelo usuário pela linha de comando
+Habilita_proxy
+Repara_sistema_apt
+
+case $1 in 
+	--version)
+		echo "Post-install-sh versão 1.0
+		Desenvolvido por: Daniel Oliveira Souza ";
+	;;
+	--ajuda)
+		Ajuda;
+		;;
+	  --atualize)
+		Atualiza_sistema;
+	  ;;
+	  --tudo)
+		Atualiza_sistema; 
+		Instala_componete; 
+	  ;;
+	  --instalacao_estatica)
+		Instala_componente; 
+	  ;;
+	  --instalacao_dinamica)
+		apt-get install $2 $3 $4 $5 $6 $7; 
+	  ;;
+	  --configure_etc_sudores)
+		Habilita_update_notifier;
+	;;
+	--restaure_etc_sudoers)
+		cp /etc/sudoers.backup /etc/sudoers;
+	;;
+	  *)
+		echo "Parametro invalido";
+	;;
+esac
+#history -c;
+#rm post-install.sh

@@ -1,0 +1,56 @@
+---------------------------------------------------------------------------
+	PostInstall 2.0-r7-testing
+---------------------------------------------------------------------------	
+	pst é um script que configura temporariamente, que permite a reparação, a atualização e a instalação de um ou mais componentes.
+	Ideal para quem possui internet em sua casa e não quer que o proxy seja habilitado fixamente. Ou habilitar o proxy em uma máquina sem ter que 
+	configura-lo manualmente. O primeiro argumento é a função que deseja chamar. Apenas a função instalacao_dinamica aceita mais de um argumento.
+	 
+	 Digite:sudo bash main-pst.sh [arg]
+	 Se estiver logado como root bash main-pst.sh 
+	 --aj
+	Exibe ajuda.
+	
+
+	 --at
+	Para atualizar o sistema
+	
+	 --at_dados 
+	Atualiza os dados.
+
+	 --cr_apt
+	Cria o arquivo /etc/apt/apt.conf ou /etc/apt/apt.conf.d/01proxy
+
+	--cr_apt --force
+	Força a criação do arquivo /etc/apt/apt.conf ou /etc/apt/apt.conf.d/01proxy
+
+	 --i-d
+	Recebe no máximo cinco argumentos. Digite o nome de até cinco programas que deseja instalar.
+
+	 --i-e
+	Para instalar itens importantes sem procurar por atualizaçoes
+	
+
+	 --reconf-sudoers
+	Restaura o arquivo /etc/sudoers ao estado anterior ao comando --conf-sudoers
+	
+	 --rm_apt	
+	Remove o arquivo /etc/apt/apt.conf ou /etc/apt/apt.conf.d/01proxy
+	
+	 --t	
+	Para atualizar e instalar itens importantes (estatico)
+	
+	 --v
+	Imprime a versão do arquivo.
+	 Exemplo de uso: 
+	./
+	
+	 ----------------------------------------------------------------------------------
+
+	 --add_ppa
+	Adiciona um PPA
+	Sintaxe: --add_ppa [arg]
+	Exemplo --add_ppa ppa:webupd8team/java.
+
+	 --at_hostname [arg]
+	Sintaxe: --at_hostname novo_nome_hostname
+	Atualiza o hostname  para um nome passado como parâmetro. (precisa ser root).
