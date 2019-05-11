@@ -1,0 +1,92 @@
+
+AUTOR: DANIEL OLIVEIRA SOUZA
+DATA: 11-05-2019
+versao=2.0-r10-11-05-2019
+
+Este projeto serve para automatizar  a configuração de proxy para o sistema APT. Foi desenvolvido para facilitar a manutenção dos computadores dos laboratórios da
+computação mas, pode ser usado em seu Linux (baseado em debian)
+Esta é uma implementação é observada programação estruturada em shellscript.O pst.sh permite:
+	*  	Configuração do proxy para o sistema APT em  modo global
+	*	Configuração temporária de proxy usando as variáveis de ambiente do sistema.
+	*	O script cria uma instância do shell. E carrega todas as variáveis e funções associadas.
+	*	Esta versão é modular:
+		* pst.sh contém todas as funções
+		* main-pst.sh contém as chamadas de funções
+		* dados.sh contém os dados do usuário para habilitar o proxy (Criado automáticamente)
+		* INIT_PST.sh contem flags padrões do PST.SH( flags que permite a execução sem o proxy)
+		* configure_dns.sh
+		
+	*	Integridade do script (observação para os laboratórios):
+	*	Este script contém a lista de programas que são usados nos laboratórios com base em informações passada pelos professores
+	*	Um código externo pode usar as funções do script (útil para instar e configurar componentes que não fazem parte da lista oficial). Para instalar 			programas de um script externo observa-se o uso da variável: apt_string_conf 
+------------------------------------------------------------------------------------------------------------------------------------------------
+	* Mudanças da versão 1.7 para versão 2.0
+	O arquivo de configuração do APT padrão não é mais o arquivo /etc/apt/apt.conf.d/01proxy 
+	O arquivo de configuração é definido automáticamente
+	* Se você usou o recurso --cr_apt da versão anterior: Fique despreocupado. O script resolve tudo automaticamente.
+	* Mudanças da versão 2.0.rc6
+		Força a sobreescrita do arquivo de configuração do proxy APT
+		Todos os comandos só podem ser executado se e somente, se o usuário tiver poderes administrativos ('root')
+		
+	* Mudança da versão 2.0.rc7 (revisão 7)
+		Substitui o comando tee pelo operadores redirecionadores > e >>
+		Faz a leitura da senha sem exibir no terminal
+		Escreve o arquivo APTCONF sem exibir no terminal:
+		Esta versão muda a maneira como se executa o script, obrigatóriamente deve se usar o caminho absoluto do diretório
+		
+		2.0.7-r21-03-2016
+			MOdifica a configuração do /etc/hosts
+			para chamar o script principal bash main-pst.sh  se estiver em root ou sudo bash main-pst.sh
+
+		2.0.8-r25-04-2016
+			Adiciona suporte ao debian 7,8 e ubuntu 16.04, e linux mint 18
+
+
+		2.0.9-r16-11-2016
+			Adiciona dependencias para funcionar com PHPMyAdmin 
+			
+		2.0.10-r05-01-2018:
+			dados.sh é descontinuado
+			Troca chamada de funçoes por flags 
+			As funções relacionadas ao proxy ficam no script global-proxy.sh 
+			INIT_PST.sh substitui o dados.sh 
+			Permite a execução do script sem usar o proxy
+			adiciona o arquivo INIT_PST.sh para incializar as flags 
+			--cr_apt, --rm_apt removidos, adicionados os comandos:
+			--set_proxy , --ativa_proxy , --desat_proxy,  --config
+			permite execução de comandos sem o root (--set_proxy, --ativa_proxy, --desat_proxy), ativando o proxy apenas para o usuário corrente
+			** Esta versão consegue ativar o proxy até no seu navegador  de internet
+
+		2.0.10-r26-11-2018
+			Fix bug em ~/.bashrc
+		2.0.10-r11-05-2019
+			Instalação do software cifs-utils
+			Desabilita proxy na configuração inicial
+
+
+-------------------------------------------------------------------------------------------------------------------
+	Recursos:
+		* Cria/remove o arquivo de configuração de proxy do sistema APT /etc/apt/apt.conf
+		* Habilita o evento "http_proxy" para o sudo (necessário para o Ubuntu)
+		* Repara e instala dependências quebradas.
+		* Altera o hostname (útil para o laboratório)
+		* Ativar/desativar o proxy no navegador para o usuário corrente ou   no root 
+		* Instala componentes programas necessários para os laboratórios de ciência da computação
+		* Permite a execução de código externo (útil para preparar os laboratórios para um evento)
+		* Mais informações execute sh main-pst.sh --aj
+
+	Arquivos que podem ser manipulados:
+		1) /etc/hostname
+		2) /etc/hosts
+		3) /etc/apt/apt.conf
+		4) /etc/sudoers
+		5) /var/lib/dpkg/lock
+		6) /var/lib/apt/list/lock
+		7) adicionar arquivos ao /etc/apt/sources.list.d/
+		8) INIT_PST.sh
+		9) /etc/bash.bashrc
+		10) ~/.bashrc
+	Post-install-2.0.10-r05-01-2018
+	Desenvolvido por Daniel Oliveira Souza 
+	Reporte bugs: oliveira.daniel109@gmail.com
+

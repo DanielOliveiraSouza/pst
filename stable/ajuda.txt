@@ -1,0 +1,100 @@
+---------------------------------------------------------------------------
+	PostInstall 2.0-rc10-testing
+---------------------------------------------------------------------------	
+	PST é um  conjunto de scripts que facilita a instalação de softwares de desenvolvimento, IDES,compiladores e bibliotecas que precisam ser instalados em um laboratório de programação ou em um computador pessoal de desenvolvedores.
+	Este script  foi desenvolvido para suportar conexões intermediadas por um servidor proxy.
+	É possível instalar softwares sem  precisar ativar o proxy em seu sistema operacional,Ideal para quem possui internet em sua casa e não que a configuração de proxy seja persistida em seu sistema operacional.
+	Também é possível habilitar o proxy facilmente para usa-lo no terminal e em seu navegador, para um usuário padrão ou para o super-usuário (root).
+	Esta ferramenta possui um conjunto de rotinas necessárias para serem utilizadas em laboratório, como alteração de hosts, habilitar proxy , execução de scripts externos 
+
+	 
+	 Digite:sudo bash main-pst.sh [arg]
+	 Se estiver logado como root bash main-pst.sh 
+	 --aj
+	Exibe ajuda.
+	
+
+	 --at
+	Para atualizar o sistema
+	
+	 --at_dados 
+	Atualiza os dados.
+
+
+	 --i-d
+	Seguido da lista de pacotes que deseja instalar, por exemplo:
+	sudo bash main-pst.sh --i-d kate konsole gcc
+
+	 --i-e
+	Para instalar compiladores, IDES e bibliotecas necesárias ao longo do curso , sem procurar por atualizaçoes
+	
+
+	 --reconf-sudoers
+	Restaura o arquivo /etc/sudoers ao estado anterior ao comando --conf-sudoers
+	
+	 --t	
+	Para atualizar e instalar itens importantes (estatico)
+	
+	 --v
+	Imprime a versão do arquivo.
+	 Exemplo de uso: 
+	sudo bash main-pst.sh --at
+	
+
+	Para ativar o proxy em root (basta executar o script no super usuário)
+	--ativa_proxy
+		Use este comando para habilitar o proxy no sistema, alterando o gssettings,  criando APT_CONF, e inserindo o proxy /etc/bash.bashrc
+
+		Exemplo:
+		sudo bash main-pst.sh --ativa_proxy
+
+	--desat_proxy
+		Use este comando para desativar o proxy no gssetings, removendo O APT_CONF e removendo as configurações /etc/bash.bashrc 
+		Exemplo:
+		sudo bash main-pst.sh --desat_proxy
+
+	--config
+		Este comando configura as váriaveis de ambiente PST_HOME para tornar o script comandos nativos no seu computador e configura os seguintes aliases : ativa_proxy , desativa_proxy
+		Obs: o comando deve ser chamado em pelo caminho absoluto ou no diretório que se encontra o script
+
+		exemplo:
+		sudo bash /home/danny/ver-2.0-rc10/main-pst.sh --config 
+
+		Obs: Após executar este comando feche o terminal e o abra novamente!
+
+	 ----------------------------------------------------------------------------------
+
+	 --add_ppa
+	Adiciona um PPA
+	Sintaxe: --add_ppa [arg]
+	Exemplo --add_ppa ppa:webupd8team/java.
+
+	 --at_hostname [arg]
+	Sintaxe: --at_hostname novo_nome_hostname
+	Atualiza o hostname  para um nome passado como parâmetro. (precisa ser root).
+	Exemplo:
+	sudo bash main-pst.sh --at_hostname lab1-02
+-----------------------------------------------------------------------------------------------------------------
+Os comandos que não precisam de root:
+
+--set_proxy:
+Sintáxe:
+	Configura o arquivo  INIT_PST.sh com as informações fornecidas em parametros
+	Para configurar um proxy que não necessita de autenticação, digite:
+	--set_proxy IP_SERVIDOR PORTA --use_login 0
+
+	Exemplo:
+	bash main-pst.sh --set_proxy 10.0.16.1 3128 --use_login 0
+
+	Para usar um proxy autenticado a sintaxe é :
+	--set_proxy IP_SERVIDOR PORTA --use_login 1 USUARIO SENHA
+
+	Exemplo:
+	bash main-pst.sh 10.0.16.1 3128 --use_login 1 aluno alunoufmt
+
+É possível ativar o proxy somente no usuário corrente
+--ativa_proxy:
+	Exemplo: bash main-pst.sh --ativa_proxy
+
+O mesmo princípio é usado para desativar
+	Exemplo: bash main-pst.sh --desat_proxy

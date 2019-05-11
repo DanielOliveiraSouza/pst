@@ -1,4 +1,0 @@
-#!/bin/bash
-echo "Este é um codigo externo ao pst.sh"
-java -version
-
