@@ -306,6 +306,10 @@ main(){
 				;;
 				"--config")
 					#ConfigurePST_PATH $1
+					if [ -e $(pwd)/pst.sh ] && [ -x $(pwd)/pst.sh ];then
+						export PST_HOME=$PWD
+						. /$(pwd)/pst.sh; #/é junto de $(pwd)
+					fi
 					setPSTHome
 					setAliases
 					#echo "Recurso indisponível"
