@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 #Universidade federal de Mato Grosso
 #Curso ciencia da computação
-#Versao PST: 2.0-rc10
-#Versão  módulo main-pst.sh: 0.0.4
+#Versao PST: 2.0.10-r27-05-2019
 #Descrição: Contem a função main do script pst.sh
 #Contem a função principal do pst.sh
 #Esta fun
@@ -228,6 +227,7 @@ main(){
 					DetectDist
 					#echo "graphics_tools=$graphics_tools"
 					apt-get install $graphics_tools $APT_STRING_CONF -y --allow-unauthenticated
+					InstalaLibGlad
 				;;
 				"--i-redes")
 					FLAG_PREINSTALL=1

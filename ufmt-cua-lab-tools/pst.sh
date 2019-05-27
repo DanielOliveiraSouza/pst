@@ -1,7 +1,7 @@
 #!/bin/bash
 # UNIVERSIDADE FEDERAL DE MATO GROSSO
 # Autor: Daniel Oliveira Souza
-# Versão:2.0.10-r05-01-2018
+# Versão:2.0.10-r27-05-2019
 # Descrição: Script de configuração geral do sistema apt com proxy de linux baseado em debian
 # * Integridade do script 
 
@@ -309,6 +309,13 @@ then
 		fi
 		
 	}
+	#função que instala a biblioteca libglad
+	InstalaLibGlad(){
+		libglad_path="$PST_HOME/ufmt-cua-lab-tools/libglad-installer/libglad-dev.deb"
+		if [  -e $libglad_path ]; then
+			dpkg -i $libglad_path
+		fi
+	}
 #Criada para ser usada nos laboratórios de computação. Instala componentes importantes para programar
 	Instala_componente(){
 		apt-get install  -y --allow-unauthenticated  ${progr_install[@]} $APT_STRING_CONF
@@ -321,6 +328,8 @@ then
 		fi
 		MakeWiresharkConf
 	}
+
+
 
 #---------------------------------------------------------------------------------------------------------
 #				FIM DE SESSÃO INSTALACAO DE COMPONENTES

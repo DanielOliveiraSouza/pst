@@ -1,7 +1,7 @@
 #!/bin/bash
 #Universidade federal de Mato Grosso
 #Curso ciencia da computação
-#Versão PST: 2.0-rc10
+#Versão PST:2.0.10-r27-05-2019
 #Descrição:
 export extras_loaded=0
 mtp_autorun="/media/mtp_autorun"

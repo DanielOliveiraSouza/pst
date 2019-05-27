@@ -16,9 +16,6 @@
 
 	 --at
 	Para atualizar o sistema
-	
-	 --at_dados 
-	Atualiza os dados.
 
 
 	 --i-d

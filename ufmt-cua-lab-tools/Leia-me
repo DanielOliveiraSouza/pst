@@ -1,9 +1,9 @@
 
 AUTOR: DANIEL OLIVEIRA SOUZA
-DATA: 11-05-2019
-versao=2.0-r10-11-05-2019
+DATA: 27-05-2019
+versao=2.0.10-r27-05-2019
 
-Este projeto serve para automatizar  a configuração de proxy para o sistema APT. Foi desenvolvido para facilitar a manutenção dos computadores dos laboratórios da
+ Foi desenvolvido para facilitar a manutenção dos computadores dos laboratórios da
 computação mas, pode ser usado em seu Linux (baseado em debian)
 Esta é uma implementação é observada programação estruturada em shellscript.O pst.sh permite:
 	*  	Configuração do proxy para o sistema APT em  modo global
@@ -59,9 +59,14 @@ Esta é uma implementação é observada programação estruturada em shellscrip
 
 		2.0.10-r26-11-2018
 			Fix bug em ~/.bashrc
+
 		2.0.10-r11-05-2019
 			Instalação do software cifs-utils
 			Desabilita proxy na configuração inicial
+		
+		2.0.10-r27-05-2019
+			Instala libglad-dev automaticament
+
 
 
 -------------------------------------------------------------------------------------------------------------------
