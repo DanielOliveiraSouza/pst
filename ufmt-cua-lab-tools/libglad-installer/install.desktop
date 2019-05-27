@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Clique aqui para instalar as bibliotecas de computação gráfica
+Exec=bash -c '"$(dirname "$1")"/cg.sh' dummy %k
+Terminal=true
+Icon=/usr/share/icons/gnome/256x256/apps/system-software-install.png
+#Icon=icon/muondiscover.png
+Type=Application
+Categories=Development;IDE;

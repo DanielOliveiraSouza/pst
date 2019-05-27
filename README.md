@@ -85,10 +85,18 @@ Configuração automática de Proxy em:
 
 **Instalação de utilitários de desenvolvimento (exige root)**
 <p>
-	Entre em terminal com root: com o comando <strong>sudo su</strong> ou <strong>su</strong>
+	Entre em terminal com root (use o comando: <strong>sudo su</strong> ou <strong>su</strong> )
 	<br><strong>Atualizar e intalar todas  ferramentas de desenvolvimento</strong></br>
 	<pre>
 		main-pst.sh 	<em>--t</em>
+	</pre>
+	<br><strong>Instalar as bibliotecas de computação gráfica</strong></br>
+	<pre>
+		main-pst.sh 	<em>--i-cg</em>
+	</pre>
+	<br><strong>Instalar ferramentas para a disciplina de Redes de computadores</strong></br>
+	<pre>
+		main-pst.sh 	<em>--i-redes</em>
 	</pre>
 	<strong> Adicionar PPAS (com proxy ativado</strong>
 	<br><strong>Sintaxe:	</strong>main-pst.sh <em>--add_ppa</em> [PPA_URL]</br>
@@ -96,7 +104,6 @@ Configuração automática de Proxy em:
 	<pre>
 		main-pst.sh 	<em>--add_ppa</em>	 ppa:webupd8team/java
 	</pre>
-	<strong>Atualizar e intalar todas  ferramentas de desenvolvimento</strong>
 </p>
 
 **Atualização de hostname(exige root)**
