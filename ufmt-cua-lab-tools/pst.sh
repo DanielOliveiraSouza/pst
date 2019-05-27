@@ -311,7 +311,7 @@ then
 	}
 	#função que instala a biblioteca libglad
 	InstalaLibGlad(){
-		libglad_path="$PST_HOME/ufmt-cua-lab-tools/libglad-installer/libglad-dev.deb"
+		libglad_path="$PST_HOME/libglad-installer/libglad-dev.deb"
 		if [  -e $libglad_path ]; then
 			dpkg -i $libglad_path
 		fi
