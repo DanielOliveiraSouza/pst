@@ -1,7 +1,7 @@
 **UFMT CUA Lab Tools v2.0.10-r11-05-2019**
 <p>
 	UFMT CUA Lab Tools é um  conjunto de scripts que facilita a instalação de softwares de desenvolvimento, IDES,compiladores e bibliotecas que precisam ser instalados em um laboratório de programação ou em um computador pessoal de desenvolvedores.
-	Desenvolvid desde 2014 e é utilizada nos laboratórios de programaçao da Universidade Federal de Mato Grosso - Campus Universitário do Araguaia.
+	Desenvolvida desde 2014 e é utilizada nos laboratórios de programaçao da Universidade Federal de Mato Grosso - Campus Universitário do Araguaia.
 </p>
 
 **Distribuições Linux Suportadas**
