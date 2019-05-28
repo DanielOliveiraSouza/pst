@@ -45,6 +45,19 @@ Configuração automática de Proxy em:
 	</ol>
 </p>
 
+**Ativação de Proxy Simplificada via Terminal (com aliases)**
+<p>
+	<strong>Ativar Proxy:</strong>
+	<pre>
+		<em>ativa_proxy</em>
+	</pre>
+	<strong>Desatvar Proxy:</strong>
+	<pre>
+		<em>desativa_proxy</em>
+	</pre>
+	<strong>Obs:</strong>Ativação de proxy global exige root!
+</p>
+
 **Principais comandos(sem exigir root)**
 <p>
 	<strong>Configuração de Proxy </strong>
@@ -98,7 +111,7 @@ Configuração automática de Proxy em:
 	<pre>
 		main-pst.sh 	<em>--i-redes</em>
 	</pre>
-	<strong> Adicionar PPAS (com proxy ativado</strong>
+	<strong> Adicionar PPAS (com proxy ativado)</strong>
 	<br><strong>Sintaxe:	</strong>main-pst.sh <em>--add_ppa</em> [PPA_URL]</br>
 	<strong>Exemplo:</strong>
 	<pre>
@@ -108,7 +121,7 @@ Configuração automática de Proxy em:
 
 **Atualização de hostname(exige root)**
 <p>
-	Entre em terminal com root: com o comando <strong>sudo su</strong> ou <strong>su</strong>
+	Entre em terminal com root(use o comando: <strong>sudo su</strong> ou <strong>su</strong> )
 	<pre>
 		<br><strong>Sintaxe:	</strong>main-pst.sh <em>--at_hostname</em> [hostname]</br>
 		main-pst.sh 	<em>	--at_hostname</em>	lab2-02 
