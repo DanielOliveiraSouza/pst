@@ -97,7 +97,7 @@ then
 			FLAG_UPDATE_NOTIFIER=1 
 			
 			case $linux_release in 
-				*"${ubuntu_v[0]}"*)
+				*"${ubuntu_lts_v[0]}"*)
 					if [ $FLAG_PREINSTALL = 1 ]
 					then 
 						mysql_preconfig "ubuntu" "bionic"
@@ -114,7 +114,7 @@ then
 						$graphics_tools
 					)
 					;;
-					*"${ubuntu_v[1]}"*)
+					*"${ubuntu_lts_v[1]}"*)
 						if [ $FLAG_PREINSTALL = 1 ]
 						then 
 							mysql_preconfig "ubuntu" "xenial"
