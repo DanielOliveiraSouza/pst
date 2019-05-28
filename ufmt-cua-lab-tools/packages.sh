@@ -110,35 +110,45 @@ debian_codinames=(
 mysql_preconfig(){
 	local dist_release=$2
 	local linux_dist=$1
-	debian_mysql_repository=(
-		"### THIS FILE IS AUTOMATICALLY CONFIGURED ###"
-		"# You may comment out entries below, but any other modifications may be lost."
-		"# Use command 'dpkg-reconfigure mysql-apt-config' as root for modifications."
-		"deb http://repo.mysql.com/apt/$linux_dist/ $dist_release mysql-5.7"
-		"deb http://repo.mysql.com/apt/$linux_dist/ $dist_release mysql-tools"
-		"# deb http://repo.mysql.com/apt/$linux_dist $dist_release mysql-tools-preview"
-		"deb-src http://repo.mysql.com/apt/$linux_dist $dist_release mysql-5.7"
-	)
-	if  [  !  -e /etc/apt/sources.list.d/mysql.list  ];then 
-		for i in ${!debian_mysql_repository[@]} 
-		do
-			echo ${debian_mysql_repository[i]}
-			if [ $i =  0 ]
-			then
-				echo ${debian_mysql_repository[$i]} > /etc/apt/sources.list.d/mysql.list
-			else
-				echo ${debian_mysql_repository[$i]} >> /etc/apt/sources.list.d/mysql.list
-			fi
-		done
-		echo "$APT_KEY_STRING_CONF"
-		#echo "$FLAG_HABILITA_PROXY"
-		if [ $FLAG_HABILITA_PROXY =  0 ]
-		then
-			apt-key adv --keyserver pgp.mit.edu  --recv-keys 5072E1F5
-		else
-			apt-key adv --keyserver pgp.mit.edu  $APT_KEY_STRING_CONF --recv-keys 5072E1F5
-		fi
+	mysql_repository_deb_url="https://repo.mysql.com/mysql-apt-config_0.8.13-1_all.deb"
+	wget -c $mysql_repository_deb_url
+	if [ $? != 0 ]; then
+		wget -c $mysql_repository_deb_url
 	fi
+	dpkg -i  mysql-apt-config_0.8.13-1_all.deb
+	apt-get update
+	if [  -e mysql-apt-config_0.8.13-1_all.deb ]; then
+		rm mysql-apt-config_0.8.13-1_all.deb
+	fi
+	# debian_mysql_repository=(
+	# 	"### THIS FILE IS AUTOMATICALLY CONFIGURED ###"
+	# 	"# You may comment out entries below, but any other modifications may be lost."
+	# 	"# Use command 'dpkg-reconfigure mysql-apt-config' as root for modifications."
+	# 	"deb http://repo.mysql.com/apt/$linux_dist/ $dist_release mysql-8.0"
+	# 	"deb http://repo.mysql.com/apt/$linux_dist/ $dist_release mysql-tools"
+	# 	"# deb http://repo.mysql.com/apt/$linux_dist $dist_release mysql-tools-preview"
+	# 	"deb-src http://repo.mysql.com/apt/$linux_dist $dist_release mysql-8.0"
+	# )
+	# if  [  !  -e /etc/apt/sources.list.d/mysql.list  ];then 
+	# 	for i in ${!debian_mysql_repository[@]} 
+	# 	do
+	# 		echo ${debian_mysql_repository[i]}
+	# 		if [ $i =  0 ]
+	# 		then
+	# 			echo ${debian_mysql_repository[$i]} > /etc/apt/sources.list.d/mysql.list
+	# 		else
+	# 			echo ${debian_mysql_repository[$i]} >> /etc/apt/sources.list.d/mysql.list
+	# 		fi
+	# 	done
+	# 	echo "$APT_KEY_STRING_CONF"
+	# 	#echo "$FLAG_HABILITA_PROXY"
+	# 	if [ $FLAG_HABILITA_PROXY =  0 ]
+	# 	then
+	# 		apt-key adv --keyserver pgp.mit.edu  --recv-keys 5072E1F5
+	# 	else
+	# 		apt-key adv --keyserver pgp.mit.edu  $APT_KEY_STRING_CONF --recv-keys 5072E1F5
+	# 	fi
+	# fi
 }
 #pacotes compativeis com debian 9/ubuntu 18.04
 #stable_libs="libapache2-mod-php7.2 libglu1-mesa libglu1-mesa-dev libgl1-mesa-dev libsoil-dev libsoil1  libglfw3-dev  libglfw3 libglfw3-doc libxi-dev "
