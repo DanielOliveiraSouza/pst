@@ -66,12 +66,18 @@ Esta é uma implementação é observada programação estruturada em shellscrip
 		
 		2.0.10-r27-05-2019
 			Instala libglad-dev automaticament
-			
+
 		2.0.10-r31-05-2020
 			Atualiza o pacote "mysql-apt-config"
 			Renomea LEIAME para changelog e move para  o diretório "docs"
 			Adiciona docs/release_notes.md
 			Atualiza  a formatação do README.md
+		2.0.11
+			Suporte Ubuntu 20.04
+			Novo: instalável via pacote .deb
+			Suporte a 'refresh' ~/.bashrc nos 'aliases' ativa_proxy, desat_proxy
+			Rotinas padronizadas pela 'Common Shell Library'
+			Adiciona o diretório core
 
 
 
