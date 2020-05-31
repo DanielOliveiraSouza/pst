@@ -107,18 +107,19 @@ debian_codinames=(
 	
 )
 
-mysql_preconfig(){
+mysql_preconfig(){	
 	local dist_release=$2
 	local linux_dist=$1
-	mysql_repository_deb_url="https://repo.mysql.com/mysql-apt-config_0.8.13-1_all.deb"
+	mysql_apt_config_versao="0.8.15-1_all"
+	mysql_repository_deb_url="https://repo.mysql.com/mysql-apt-config_${mysql_apt_config_versao}.deb"
 	wget -c $mysql_repository_deb_url
 	if [ $? != 0 ]; then
 		wget -c $mysql_repository_deb_url
 	fi
-	dpkg -i  mysql-apt-config_0.8.13-1_all.deb
+	dpkg -i  mysql-apt-config_${mysql_apt_config_versao}.deb
 	apt-get update
-	if [  -e mysql-apt-config_0.8.13-1_all.deb ]; then
-		rm mysql-apt-config_0.8.13-1_all.deb
+	if [  -e mysql-apt-config_${mysql_apt_config_versao}.deb ]; then
+		rm mysql-apt-config_${mysql_apt_config_versao}.deb
 	fi
 	# debian_mysql_repository=(
 	# 	"### THIS FILE IS AUTOMATICALLY CONFIGURED ###"
