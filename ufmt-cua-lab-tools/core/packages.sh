@@ -85,7 +85,7 @@ pkg_opt_libs=(
 	"libpqxx-4.0 libpqxx-dev  postgresql libpqxx3-doc libpostgresql-jdbc-java "
 	
 )
-
+A Solução de Isolamento
 debian_linux_modifications=(
 	"mysql-community-server qt5-style-plugins " 
 	"logisim checkinstall " #stable
